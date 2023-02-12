@@ -35,7 +35,7 @@ const Auth = () => {
     try {
       console.log(formState.inputs.name.value, formState.inputs.password.value);
       const responseData = await sendRequest(
-        "http://localhost:8080/api/users/login",
+        `${process.env.REACT_APP_URL}/api/users/login`,
         "POST",
         JSON.stringify({
           name: formState.inputs.name.value,
@@ -45,7 +45,12 @@ const Auth = () => {
           "Content-Type": "application/json",
         }
       );
-      auth.login(responseData.userId, responseData.token,null,responseData.userType);
+      auth.login(
+        responseData.userId,
+        responseData.token,
+        null,
+        responseData.userType
+      );
     } catch (err) {
       console.log(err);
     }
@@ -74,7 +79,7 @@ const Auth = () => {
             type="password"
             label="Password"
             validators={[VALIDATOR_REQUIRE()]}
-            errorText="Please enter a valid password, at least 6 characters."
+            errorText="Please enter a valid password"
             onInput={inputHandler}
           />
           <Button type="submit" disabled={!formState.isValid}>

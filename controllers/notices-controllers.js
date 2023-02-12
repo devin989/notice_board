@@ -28,7 +28,7 @@ const createNotice = async (req, res, next) => {
     );
   }
   if (req.userData.type != "admin") {
-    // console.log(req.userData.type);
+    console.log(req.userData.type);
     return next(new HttpError("Unauthorised access", 403));
   }
 

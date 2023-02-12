@@ -17,7 +17,7 @@ const Notices = () => {
     const fetchNotices = async () => {
       try {
         const responseData = await sendRequest(
-          `http://localhost:8080/api/notices`,
+          `${process.env.REACT_APP_URL}/api/notices`,
           "GET",
           null,
           {

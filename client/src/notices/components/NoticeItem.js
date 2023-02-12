@@ -26,7 +26,7 @@ const NoticeItem = (props) => {
     setShowConfirmModal(false);
     try {
       await sendRequest(
-        `http://localhost:8080/api/notices/${props.id}`,
+        `${process.env.REACT_APP_URL}/api/notices/${props.id}`,
         "DELETE",
         null,
         {

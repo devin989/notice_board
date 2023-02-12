@@ -65,7 +65,7 @@ const signup = async (req, res, next) => {
   let token;
   try {
     token = jwt.sign(
-      { userId: createdUser.id },
+      { userId: createdUser.id, userType: createdUser.type },
       "supersecret_dont_share",
       { expiresIn: "1h" }
     );
@@ -77,7 +77,9 @@ const signup = async (req, res, next) => {
     return next(error);
   }
 
-  res.status(201).json({ userId: createdUser.id,userType: createdUser.type, token: token });
+  res
+    .status(201)
+    .json({ userId: createdUser.id, userType: createdUser.type, token: token });
 };
 
 const login = async (req, res, next) => {
@@ -126,7 +128,7 @@ const login = async (req, res, next) => {
   let token;
   try {
     token = jwt.sign(
-      { userId: existingUser.id },
+      { userId: existingUser.id, userType: existingUser.type },
       "supersecret_dont_share",
       { expiresIn: "1h" }
     );
@@ -145,5 +147,6 @@ const login = async (req, res, next) => {
   });
 };
 
+// exports.getUsers = getUsers;
 exports.signup = signup;
 exports.login = login;

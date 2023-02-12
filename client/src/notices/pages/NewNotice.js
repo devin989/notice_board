@@ -44,7 +44,7 @@ const NewNotice = () => {
       };
 
       await sendRequest(
-        "http://localhost:8080/api/notices/create",
+        `${process.env.REACT_APP_URL}/api/notices/create`,
         "POST",
         JSON.stringify(formData),
         {
